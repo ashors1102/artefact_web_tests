@@ -1,7 +1,6 @@
 package com.ashors1102.artefact;
 
 import org.junit.Test;
-import org.openqa.selenium.By;
 
 import static org.junit.Assert.assertTrue;
 
