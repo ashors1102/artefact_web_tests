@@ -3,10 +3,7 @@ package com.ashors1102.artefact;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoAlertPresentException;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.util.concurrent.TimeUnit;
@@ -26,7 +23,7 @@ public class ExhibitionCreationTest {
     gotoAdminPage();
     login("ashors1102@gmail.com", "Aa321369357");
     initExhibitionCreation();
-    fillExhibitionForm();
+    fillExhibitionForm(new ExhibitionData("Short Name of Exhibition", "Full Name of Exhibition", "Short brief", "Москва"));
     saveAndExitExhibition();
   }
 
@@ -42,11 +39,20 @@ public class ExhibitionCreationTest {
     wd.findElement(By.id("add_btn_Project")).click();
   }
 
-  private void fillExhibitionForm() {
+  private void fillExhibitionForm(ExhibitionData exhibitionData) {
     wd.findElement(By.name("title.ru")).click();
     wd.findElement(By.name("title.ru")).clear();
-    wd.findElement(By.name("title.ru")).sendKeys("Test name");
+    wd.findElement(By.name("title.ru")).sendKeys(exhibitionData.getShortName());
+    wd.findElement(By.name("longTitle.ru")).click();
+    wd.findElement(By.name("longTitle.ru")).clear();
+    wd.findElement(By.name("longTitle.ru")).sendKeys(exhibitionData.getFullName());
+    wd.findElement(By.name("lead.ru")).click();
+    wd.findElement(By.name("lead.ru")).clear();
+    wd.findElement(By.name("lead.ru")).sendKeys(exhibitionData.getBrief());
     wd.findElement(By.id("select2--container")).click();
+    wd.findElement(By.xpath("//span/input")).clear();
+    wd.findElement(By.xpath("//span/input")).sendKeys(exhibitionData.getCity());
+    wd.findElement(By.xpath("//span/input")).sendKeys(Keys.ENTER);
   }
 
   private void saveAndExitExhibition() {
