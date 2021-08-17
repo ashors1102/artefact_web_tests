@@ -1,4 +1,4 @@
-package com.ashors1102.artefact;
+package com.ashors1102.artefact.model;
 
 public class ExhibitionData {
 

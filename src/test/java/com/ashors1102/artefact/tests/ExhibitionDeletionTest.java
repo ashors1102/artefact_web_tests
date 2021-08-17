@@ -1,4 +1,4 @@
-package com.ashors1102.artefact;
+package com.ashors1102.artefact.tests;
 
 import org.junit.Test;
 
@@ -8,10 +8,8 @@ public class ExhibitionDeletionTest extends TestBase{
 
     @Test
     public void testExhibitionDeletion() throws Exception {
-        gotoAdminPage();
-        login("ashors1102@gmail.com", "Aa321369357");
-        selectExhibition();
-        deleteButton();
+        app.exhibition().selectExhibition();
+        app.exhibition().deleteButton();
         assertTrue(closeAlertAndGetItsText().matches("^Удалить 1 документ\\(a, ов\\)[\\s\\S]$"));
     }
 }
